@@ -1,0 +1,135 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "HealthCatalyst": {
+      "root": "",
+      "sourceRoot": "UI",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/HealthCatalyst",
+            "index": "UI/index.html",
+            "main": "UI/main.ts",
+            "polyfills": "UI/polyfills.ts",
+            "tsConfig": "UI/tsconfig.app.json",
+            "assets": [
+              "UI/favicon.ico",
+              "UI/assets"
+            ],
+            "styles": [
+              "UI/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "UI/environments/environment.ts",
+                  "with": "UI/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "HealthCatalyst:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "HealthCatalyst:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "HealthCatalyst:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "UI/test.ts",
+            "polyfills": "UI/polyfills.ts",
+            "tsConfig": "UI/tsconfig.spec.json",
+            "karmaConfig": "UI/karma.conf.js",
+            "styles": [
+              "UI/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "UI/favicon.ico",
+              "UI/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "UI/tsconfig.app.json",
+              "UI/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "HealthCatalyst-e2e": {
+      "root": "e2e/",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "HealthCatalyst:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "HealthCatalyst:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "HealthCatalyst"
+}
