@@ -1,1 +1,45 @@
 /* You can add global styles to this file, and also import other style files */
+
+.btn {
+    border-radius: 0;
+}
+
+.btn-md {
+    border-width: 0;
+    outline: none;
+    border-radius: 0;
+    cursor: pointer;
+    margin: 1em 0 0 0;
+}
+
+/* h3 { */
+/*     text-align: center; */
+/*     margin: 40px; */
+/* } */
+
+.navbar {
+    min-height: 128px !important;
+}
+
+.abstract {
+    background-image: url("assets/images/abstract-bg-1200x0-c-default.png");
+    background-color: #39f;
+    width: 100% !important;
+    margin: 0;
+}
+
+.card {
+    margin: 1em 0 0 0 !important;
+    padding: 1em !important;
+    max-width: 600px;
+}
+
+.search-box-container {
+    min-height: 16rem;
+}
+
+.well {
+    padding-top: 10rem;
+}
+
+.search-button {}

@@ -8,7 +8,7 @@ namespace PeopleApp.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
-  public class ValuesController : ControllerBase
+  public class PeopleController : ControllerBase
   {
     // GET api/values
     [HttpGet]
