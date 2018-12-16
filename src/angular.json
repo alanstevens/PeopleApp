@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "HealthCatalyst": {
+    "PeopleApp": {
       "root": "",
       "sourceRoot": "UI",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/HealthCatalyst",
+            "outputPath": "dist/PeopleApp",
             "index": "UI/index.html",
             "main": "UI/main.ts",
             "polyfills": "UI/polyfills.ts",
@@ -57,18 +57,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "HealthCatalyst:build"
+            "browserTarget": "PeopleApp:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "HealthCatalyst:build:production"
+              "browserTarget": "PeopleApp:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "HealthCatalyst:build"
+            "browserTarget": "PeopleApp:build"
           }
         },
         "test": {
@@ -102,7 +102,7 @@
         }
       }
     },
-    "HealthCatalyst-e2e": {
+    "PeopleApp-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -111,11 +111,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "HealthCatalyst:serve"
+            "devServerTarget": "PeopleApp:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "HealthCatalyst:serve:production"
+              "devServerTarget": "PeopleApp:serve:production"
             }
           }
         },
@@ -131,5 +131,5 @@
       }
     }
   },
-  "defaultProject": "HealthCatalyst"
+  "defaultProject": "PeopleApp"
 }

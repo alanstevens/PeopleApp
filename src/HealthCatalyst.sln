@@ -2,8 +2,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeopleApp", "API\PeopleApp\PeopleApp.csproj", "{81A1C969-2C1B-4079-9BF3-11ECE1DB24B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeopleAppTests", "API\PeopleAppTests\PeopleAppTests.csproj", "{876F5ACD-E78F-4DF1-B55B-68EF7ADD6BDE}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -14,9 +12,5 @@ Global
 		{81A1C969-2C1B-4079-9BF3-11ECE1DB24B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81A1C969-2C1B-4079-9BF3-11ECE1DB24B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81A1C969-2C1B-4079-9BF3-11ECE1DB24B6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{876F5ACD-E78F-4DF1-B55B-68EF7ADD6BDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{876F5ACD-E78F-4DF1-B55B-68EF7ADD6BDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{876F5ACD-E78F-4DF1-B55B-68EF7ADD6BDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{876F5ACD-E78F-4DF1-B55B-68EF7ADD6BDE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
