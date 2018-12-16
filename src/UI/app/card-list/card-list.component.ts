@@ -1,19 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { PeopleService } from './shared/people.service'
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-card-list',
-  templateUrl: './card-list.component.html',
+  template: `
+    <app-card *ngFor="let person of people" [person]="person"></app-card>
+    `,
   styleUrls: ['./card-list.component.css']
 })
 export class CardListComponent implements OnInit {
 
-  people: any[]
-  constructor(private peopleService: PeopleService) {
+  @Input() people: any[]
+  constructor() {
   }
 
   ngOnInit() {
-    this.people = this.peopleService.findPeople()
   }
 
 }

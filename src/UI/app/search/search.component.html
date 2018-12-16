@@ -1,0 +1,22 @@
+<div>
+    <div class="container-fluid abstract">
+        <div class="row ">
+            <div class="search-box-container col-12">
+                <div class="well">
+                    <form>
+                        <fieldset>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="query" id="query" placeholder="Start typing something to search...">
+                            </div>
+                            <button type="submit" class="btn btn-secondary float-right">Search</button>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <app-card-list [people]="people"></app-card-list>
+    </div>
+</div>
