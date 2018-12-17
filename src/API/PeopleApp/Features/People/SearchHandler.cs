@@ -7,7 +7,7 @@ using PeopleApp.Shared;
 
 namespace PeopleApp.Controllers
 {
-  public class SeachHandler : IRequestHandler<SearchRequest, IEnumerable<PersonDTO>>
+  public class SearchHandler : IRequestHandler<SearchRequest, IEnumerable<PersonDTO>>
   {
     public Task<IEnumerable<PersonDTO>> Handle(SearchRequest request, CancellationToken cancellationToken)
     {

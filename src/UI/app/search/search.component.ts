@@ -9,7 +9,7 @@ import { PeopleService } from '../shared/people.service';
 export class SearchComponent implements OnInit {
 
   people: any[];
-  constructor(private peopleService: PeopleService) {
+    constructor(private peopleService: PeopleService) {
   }
 
   ngOnInit() {

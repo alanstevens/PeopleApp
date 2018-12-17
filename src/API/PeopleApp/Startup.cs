@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using PeopleApp.Shared;
 
 namespace PeopleApp
 {
@@ -28,6 +24,27 @@ namespace PeopleApp
       services.AddMvc()
         .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
         .AddFeatureFolders();
+
+      services.AddCors(options =>
+      {
+        options.AddPolicy("AllowAll",
+          builder => builder.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials());
+      });
+
+      services.AddMediatR(GetType().Assembly);
+
+      var dbContextOptions = new DbContextOptionsBuilder<ApiContext>()
+        .UseInMemoryDatabase("People")
+        .Options;
+
+      var context = new ApiContext(dbContextOptions);
+
+      context.Seed();
+
+      services.AddSingleton(context);
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +59,7 @@ namespace PeopleApp
         app.UseHsts();
       }
 
+      app.UseCors("AllowAll");
       app.UseHttpsRedirection();
       app.UseMvc();
     }

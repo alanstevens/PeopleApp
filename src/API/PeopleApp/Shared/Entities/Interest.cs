@@ -1,7 +1,6 @@
-using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace PeopleApp.Shared
+namespace PeopleApp.Shared.Entities
 {
   public class Interest
   {

@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { CardComponent } from './card/card.component';
 import { CardListComponent } from './card-list/card-list.component';
 import { SearchComponent } from './search/search.component';
+import { PeopleService } from './shared/people.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { SearchComponent } from './search/search.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [
+    PeopleService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

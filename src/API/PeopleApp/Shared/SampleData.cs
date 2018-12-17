@@ -1,3 +1,5 @@
+using PeopleApp.Shared.Entities;
+
 namespace PeopleApp.Shared
 {
   public static class SampleData
