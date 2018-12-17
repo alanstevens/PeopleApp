@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using PeopleApp.Shared.Entities;
@@ -21,22 +23,30 @@ namespace PeopleApp.Shared
       {
         Interests.Add(interest);
       }
-      
+
       this.SaveChanges();
 
       foreach (var person in SampleData.People)
       {
         People.Add(person);
+        person.Interests = new List<Interest>();
       }
-      
+
       this.SaveChanges();
 
       foreach (var person in People)
       {
         var colors = person.Colors.Split();
-        foreach (var color in colors)
+
+        if (colors.Any())
         {
-          person.Interests.Add(Interests.Single(i => i.Color == color));
+          foreach (var color in colors)
+          {
+            var interest = Interests.FirstOrDefault(i => i.Color == color);
+
+            if (interest != null)
+              person.Interests.Add(interest);
+          }
         }
       }
 
