@@ -26,6 +26,6 @@ namespace PeopleApp.Controllers
 
   public class InterestDTO
   {
-    public string Interest { get; set; }
+    public string Name { get; set; }
   }
 }

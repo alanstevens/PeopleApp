@@ -1,4 +1,5 @@
-﻿using MediatR;
+using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -36,11 +37,7 @@ namespace PeopleApp
 
       services.AddMediatR(GetType().Assembly);
 
-      var dbContextOptions = new DbContextOptionsBuilder<ApiContext>()
-        .UseInMemoryDatabase("People")
-        .Options;
-
-      var context = new ApiContext(dbContextOptions);
+      var context = new ApiContext(ApiContext.InMemoryOptions);
 
       context.Seed();
 
@@ -50,6 +47,8 @@ namespace PeopleApp
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     public void Configure(IApplicationBuilder app, IHostingEnvironment env)
     {
+      Mapper.Initialize(cfg => cfg.AddProfiles(GetType().Assembly));
+
       if (env.IsDevelopment())
       {
         app.UseDeveloperExceptionPage();
@@ -60,7 +59,7 @@ namespace PeopleApp
       }
 
       app.UseCors("AllowAll");
-      app.UseHttpsRedirection();
+      //app.UseHttpsRedirection();
       app.UseMvc();
     }
   }

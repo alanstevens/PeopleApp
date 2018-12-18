@@ -11,12 +11,9 @@ namespace PeopleApp.Shared
 
     public ApiContextTests()
     {
-      var dbContextOptions = new DbContextOptionsBuilder<ApiContext>()
-        .UseInMemoryDatabase("People")
-        .Options;
-
-      _context = new ApiContext(dbContextOptions);
+      _context = new ApiContext(ApiContext.InMemoryOptions);
     }
+
 
     [Fact]
     public void should_seed_database()

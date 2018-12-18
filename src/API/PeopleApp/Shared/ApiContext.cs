@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using PeopleApp.Shared.Entities;
@@ -9,13 +7,14 @@ namespace PeopleApp.Shared
 {
   public class ApiContext : DbContext
   {
-    public ApiContext(DbContextOptions<ApiContext> options)
-      : base(options)
-    {
-    }
+    public ApiContext(DbContextOptions<ApiContext> options) : base(options) { }
 
     public DbSet<Person> People { get; set; }
     public DbSet<Interest> Interests { get; set; }
+
+    public static DbContextOptions<ApiContext> InMemoryOptions => new DbContextOptionsBuilder<ApiContext>()
+                                                                       .UseInMemoryDatabase("People")
+                                                                       .Options;
 
     public void Seed()
     {
