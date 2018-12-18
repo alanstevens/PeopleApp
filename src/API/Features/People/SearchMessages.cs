@@ -20,6 +20,7 @@ namespace PeopleApp.Controllers
     public string State { get; set; }
     public string Zip { get; set; }
     public string Photo{ get; set; }
+    // TODO: Delete this after sorting out interests - HAS 12/18/2018 
     public string Colors { get; set; }
     public List<InterestDTO> Interests { get; set; }
   }

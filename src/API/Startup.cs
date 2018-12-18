@@ -37,7 +37,7 @@ namespace PeopleApp
 
       services.AddMediatR(GetType().Assembly);
 
-      var context = new ApiContext(ApiContext.InMemoryOptions);
+      var context = new ApiContext(ApiContext.SqliteOptions);
 
       context.Seed();
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -15,7 +16,12 @@ namespace PeopleApp.Controllers
 
     public Task<IEnumerable<PersonDTO>> Handle(SearchRequest request, CancellationToken cancellationToken)
     {
-      var results = _context.People.Where(p => p.FirstName.Contains(request.SearchTerm) || p.LastName.Contains(request.SearchTerm));
+      var ignoreCase = StringComparison.OrdinalIgnoreCase;
+      var searchTerm = request.SearchTerm;
+
+      var results = _context.People
+        .Where(p => p.FirstName.Contains(searchTerm, ignoreCase) || p.LastName.Contains(searchTerm, ignoreCase))
+        .ToList();
 
       var response = Mapper.Map<IEnumerable<PersonDTO>>(results);
 

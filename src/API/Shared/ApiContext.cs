@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using PeopleApp.Shared.Entities;
 
@@ -16,40 +18,52 @@ namespace PeopleApp.Shared
                                                                        .UseInMemoryDatabase("People")
                                                                        .Options;
 
+    public static DbContextOptions<ApiContext> SqliteOptions
+    {
+      get
+      {
+        var connection = new SqliteConnection("DataSource=:memory:");
+        connection.Open();
+
+        return new DbContextOptionsBuilder<ApiContext>()
+          .UseSqlite(connection)
+          .Options;
+      }
+    }
+
     public void Seed()
     {
+      Database.EnsureCreated();
+
       foreach (var interest in SampleData.Interests)
       {
         Interests.Add(interest);
       }
 
-      this.SaveChanges();
+      SaveChanges();
 
       foreach (var person in SampleData.People)
       {
-        People.Add(person);
         person.Interests = new List<Interest>();
+        People.Add(person);
       }
 
-      this.SaveChanges();
+      SaveChanges();
 
       foreach (var person in People)
       {
-        var colors = person.Colors.Split();
+        if (String.IsNullOrWhiteSpace(person.Colors)) continue;
 
-        if (colors.Any())
+        var colors = person.Colors.Split(',');
+
+        foreach (var color in colors)
         {
-          foreach (var color in colors)
-          {
-            var interest = Interests.FirstOrDefault(i => i.Color == color);
+          var interest = Interests.First(i => i.Color == color.Trim());
 
-            if (interest != null)
-              person.Interests.Add(interest);
-          }
+          person.Interests.Add(interest);
         }
       }
-
-      this.SaveChanges();
+      SaveChanges();
     }
   }
 }

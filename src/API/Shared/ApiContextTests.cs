@@ -1,6 +1,6 @@
+using System;
 using System.Linq;
 using FluentAssertions;
-using Microsoft.EntityFrameworkCore;
 using Xunit;
 
 namespace PeopleApp.Shared
@@ -11,9 +11,8 @@ namespace PeopleApp.Shared
 
     public ApiContextTests()
     {
-      _context = new ApiContext(ApiContext.InMemoryOptions);
+      _context = new ApiContext(ApiContext.SqliteOptions);
     }
-
 
     [Fact]
     public void should_seed_database()
@@ -23,6 +22,15 @@ namespace PeopleApp.Shared
       _context.Interests.Count().Should().Be(7);
 
       _context.People.Count().Should().Be(200);
+
+      foreach (var person in _context.People)
+      {
+        if (String.IsNullOrWhiteSpace(person.Colors)) continue;
+
+        var colors = person.Colors.Split(',');
+
+        person.Interests.Count.Should().Be(colors.Length);
+      }
     }
   }
-}
+} 
