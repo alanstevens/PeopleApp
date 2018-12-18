@@ -2,8 +2,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using PeopleApp.Controllers;
 
-namespace PeopleApp.Controllers
+namespace PeopleApp.Features.People
 {
   [Route("api/[controller]")]
   [ApiController]
