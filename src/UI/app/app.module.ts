@@ -16,7 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
     SearchComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [
     PeopleService
