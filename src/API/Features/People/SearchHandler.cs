@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using System.Threading;
 using System.Threading.Tasks;
-using AutoMapper;
+using AutoMapper; 
 using MediatR;
 using PeopleApp.Shared;
 
@@ -19,7 +20,8 @@ namespace PeopleApp.Controllers
       var ignoreCase = StringComparison.OrdinalIgnoreCase;
       var searchTerm = request.SearchTerm;
 
-      var results = _context.People
+      List<Person> results;
+      results = _context.People
         .Where(p => p.FirstName.Contains(searchTerm, ignoreCase) || p.LastName.Contains(searchTerm, ignoreCase))
         .ToList();
 

@@ -1,13 +1,12 @@
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using PeopleApp.Shared.Entities;
 
 namespace PeopleApp.Shared
 {
   public class Person
   {
-    [Key]
-    public int Id { get; set; }
+    public int PersonId { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public int Age { get; set; }
@@ -18,6 +17,7 @@ namespace PeopleApp.Shared
     public string Zip { get; set; }
     public string Photo{ get; set; }
     public string Colors { get; set; }
-    public List<Interest> Interests { get; set; }
+    public List<PersonInterest> PersonInterests { get; set; }
+    public List<Interest> Interests => PersonInterests.Select(i => i.Interest).ToList();
   }
 }

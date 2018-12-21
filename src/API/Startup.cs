@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -7,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PeopleApp.Shared;
+using PeopleApp.Shared.Entities;
 
 namespace PeopleApp
 {
@@ -39,7 +44,7 @@ namespace PeopleApp
 
       var context = new ApiContext(ApiContext.SqliteOptions);
 
-      context.Seed();
+      SeedData(context);
 
       services.AddSingleton(context);
     }
@@ -61,6 +66,47 @@ namespace PeopleApp
       app.UseCors("AllowAll");
       //app.UseHttpsRedirection();
       app.UseMvc();
+    }
+
+    public void SeedData(ApiContext context)
+    {
+      context.Database.EnsureDeleted();
+      context.Database.EnsureCreated();
+
+      foreach (var interest in SampleData.Interests)
+      {
+        context.Interests.Add(interest);
+      }
+
+      context.SaveChanges();
+
+      foreach (var person in SampleData.People)
+      {
+        person.PersonInterests = new List<PersonInterest>();
+        context.People.Add(person);
+      }
+
+      context.SaveChanges();
+
+      foreach (var person in context.People)
+      {
+        if (String.IsNullOrWhiteSpace(person.Colors)) continue;
+
+        var colors = person.Colors.Split(',');
+
+        foreach (var color in colors)
+        {
+          var interest = context.Interests.First(i => i.Color == color.Trim());
+          interest.PersonId = person.PersonId;
+
+          person.PersonInterests.Add(new PersonInterest { Person = person, Interest = interest });
+
+          //context.ChangeTracker.DetectChanges(); //debug
+          //var entries = context.ChangeTracker.Entries().Where(e=>e.Entity is Interest).ToList();  //debug
+        }
+      }
+
+      context.SaveChanges();
     }
   }
 }

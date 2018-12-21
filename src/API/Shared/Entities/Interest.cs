@@ -1,12 +1,12 @@
-using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 namespace PeopleApp.Shared.Entities
 {
   public class Interest
   {
-    [Key]
-    public int Id { get; set; }
+    public int InterestId { get; set; }
     public string Color { get; set; }
     public string Name { get; set; }
+    public List<PersonInterest> PersonInterests { get; set; }
   }
 }
