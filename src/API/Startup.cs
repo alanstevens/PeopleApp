@@ -97,7 +97,6 @@ namespace PeopleApp
         foreach (var color in colors)
         {
           var interest = context.Interests.First(i => i.Color == color.Trim());
-          interest.PersonId = person.PersonId;
 
           person.PersonInterests.Add(new PersonInterest { Person = person, Interest = interest });
 

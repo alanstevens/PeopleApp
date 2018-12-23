@@ -6,9 +6,9 @@
                     <form>
                         <fieldset>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="query" id="query" placeholder="Start typing something to search...">
+                                <input type="text" [(ngModel)]="searchTerm" class="form-control" name="query" id="query" placeholder="Start typing something to search...">
                             </div>
-                            <button type="submit" class="btn btn-secondary float-right">Search</button>
+                            <button (click)="search()"class="btn btn-secondary float-right">Search</button>
                         </fieldset>
                     </form>
                 </div>

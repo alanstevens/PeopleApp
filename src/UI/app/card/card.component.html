@@ -12,10 +12,7 @@
                         <p class="card-text"><strong>State: </strong> {{person.state}} </p>
                         <p class="card-text"><strong>Zip: </strong> {{person.zip}} </p>
                         <p><strong>Interests: </strong>
-                            <span class="badge badge-secondary">WordPress</span>
-                            <span class="badge badge-secondary">Weebly</span>
-                            <span class="badge badge-secondary">Bootstrap</span>
-                            <span class="badge badge-secondary">Wix</span>
+                            <app-interest *ngFor="let interest of person.interests" [interest]="interest"></app-interest>
                         </p>
                     </div>
                     <div class="col-md-4 col-sm-4 text-center">

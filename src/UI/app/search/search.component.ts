@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { PeopleService } from '../shared/people.service';
+import { Component, OnInit } from '@angular/core'
+import { PeopleService } from '../shared/people.service'
 
 @Component({
   selector: 'app-search',
@@ -8,12 +8,18 @@ import { PeopleService } from '../shared/people.service';
 })
 export class SearchComponent implements OnInit {
 
-  people: any[];
-    constructor(private peopleService: PeopleService) {
+  people: any[]
+  constructor(private peopleService: PeopleService) {
+  }
+
+  searchTerm: string
+
+  search() {
+    this.peopleService.findPeople(this.searchTerm)
+      .subscribe(people => this.people = people)
   }
 
   ngOnInit() {
-    this.people = this.peopleService.findPeople();
   }
 
 }

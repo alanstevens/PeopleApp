@@ -4,7 +4,7 @@ using System.Linq;
 
 using System.Threading;
 using System.Threading.Tasks;
-using AutoMapper; 
+using AutoMapper;
 using MediatR;
 using PeopleApp.Shared;
 
@@ -23,6 +23,7 @@ namespace PeopleApp.Controllers
       List<Person> results;
       results = _context.People
         .Where(p => p.FirstName.Contains(searchTerm, ignoreCase) || p.LastName.Contains(searchTerm, ignoreCase))
+        .OrderBy(p => p.LastName)
         .ToList();
 
       var response = Mapper.Map<IEnumerable<PersonDTO>>(results);
