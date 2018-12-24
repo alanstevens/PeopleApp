@@ -18,6 +18,13 @@ namespace PeopleApp.Shared
     public string Photo{ get; set; }
     public string Colors { get; set; }
     public List<PersonInterest> PersonInterests { get; set; }
-    public List<Interest> Interests => PersonInterests.Select(i => i.Interest).ToList();
+    public List<Interest> Interests
+    {
+      get
+      {
+        if(PersonInterests.IsNull()) return new List<Interest>();
+        return PersonInterests.Select(i => i.Interest).ToList();
+      }
+    }
   }
 }

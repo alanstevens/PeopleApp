@@ -18,9 +18,9 @@ namespace PeopleApp.Controllers
     public Task<IEnumerable<PersonDTO>> Handle(SearchRequest request, CancellationToken cancellationToken)
     {
       const StringComparison ignoreCase = StringComparison.OrdinalIgnoreCase;
-      var searchTerm = request.SearchTerm;
+      var searchTerm = request.SearchTerm.Trim();
 
-      if (String.IsNullOrWhiteSpace(searchTerm)) return Task.FromResult(new PersonDTO[0].AsEnumerable());
+      if (searchTerm.IsBlank()) return Task.FromResult(new PersonDTO[0].AsEnumerable());
 
       var results = _context.People
         .Where(p => p.FirstName.Contains(searchTerm, ignoreCase) || p.LastName.Contains(searchTerm, ignoreCase))
