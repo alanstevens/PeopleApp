@@ -26,9 +26,18 @@ namespace PeopleApp.Controllers
         .OrderBy(p => p.LastName)
         .ToList();
 
+      AddLatency();
+
       var response = Mapper.Map<IEnumerable<PersonDTO>>(results);
 
       return Task.FromResult(response);
+    }
+
+    private static void AddLatency()
+    {
+      var rand = new Random();
+      var sleep = rand.Next(0, 31);
+      Thread.Sleep(sleep * 100);
     }
   }
 }

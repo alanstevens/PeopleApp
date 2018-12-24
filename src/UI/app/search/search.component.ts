@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { PeopleService } from '../shared/people.service'
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner'
 
 @Component({
   selector: 'app-search',
@@ -9,14 +10,19 @@ import { PeopleService } from '../shared/people.service'
 export class SearchComponent implements OnInit {
 
   people: any[]
-  constructor(private peopleService: PeopleService) {
+  constructor(private peopleService: PeopleService,
+    private spinnerService: Ng4LoadingSpinnerService) {
   }
 
   searchTerm: string
 
   search() {
+    this.spinnerService.show()
     this.peopleService.findPeople(this.searchTerm)
-      .subscribe(people => this.people = people)
+      .subscribe(people => {
+        this.people = people
+        this.spinnerService.hide()
+      })
   }
 
   ngOnInit() {

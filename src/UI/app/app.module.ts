@@ -9,6 +9,7 @@ import { PeopleService } from './shared/people.service'
 import { HttpClientModule } from '@angular/common/http'
 import { InterestComponent } from './interest/interest.component'
 import { FormsModule } from '@angular/forms'
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner'
 
 @NgModule({
   declarations: [
@@ -16,11 +17,12 @@ import { FormsModule } from '@angular/forms'
     CardComponent,
     CardListComponent,
     SearchComponent,
-    InterestComponent  ],
+    InterestComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    Ng4LoadingSpinnerModule.forRoot()
   ],
   providers: [
     PeopleService
