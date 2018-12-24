@@ -17,11 +17,12 @@ namespace PeopleApp.Controllers
 
     public Task<IEnumerable<PersonDTO>> Handle(SearchRequest request, CancellationToken cancellationToken)
     {
-      var ignoreCase = StringComparison.OrdinalIgnoreCase;
+      const StringComparison ignoreCase = StringComparison.OrdinalIgnoreCase;
       var searchTerm = request.SearchTerm;
 
-      List<Person> results;
-      results = _context.People
+      if (String.IsNullOrWhiteSpace(searchTerm)) return Task.FromResult(new PersonDTO[0].AsEnumerable());
+
+      var results = _context.People
         .Where(p => p.FirstName.Contains(searchTerm, ignoreCase) || p.LastName.Contains(searchTerm, ignoreCase))
         .OrderBy(p => p.LastName)
         .ToList();
@@ -36,8 +37,8 @@ namespace PeopleApp.Controllers
     private static void AddLatency()
     {
       var rand = new Random();
-      var sleep = rand.Next(0, 31);
-      Thread.Sleep(sleep * 100);
+      var latency = rand.Next(0, 31);
+      Thread.Sleep(latency * 100);
     }
   }
 }
