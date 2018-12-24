@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "api": "dotnet run --project api/PeopleApp.csproj --no-launch-profile",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",

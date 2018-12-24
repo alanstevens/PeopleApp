@@ -11,9 +11,11 @@ A Web Application using WebAPI and a front-end JavaScript framework (e.g., Angul
 Use an ORM framework to talk to the database
 Unit Tests for appropriate parts of the application
 
-## TODO
-* render interests
-* wire up button and http call
-* busy spinner
-* testing
-* documentation
+## Instructions
+* To run the app:
+    * `cd ./src`
+    * Start the api: `npm run api`
+    * In a new console window, start the ui:  `npm start`
+
+## Prerequisites
+* dotnet core 2.2 SDK: https://www.microsoft.com/net/download/
